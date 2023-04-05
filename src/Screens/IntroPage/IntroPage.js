@@ -3,14 +3,11 @@ import {
   View,
   Text,
   SafeAreaView,
-  Pressable,
   Image,
-  ImageBackground,
   StyleSheet,
 } from "react-native";
-import dushawn from "./assets/images/dushawn.jpg";
-import jair from "./assets/images/jair.jpg";
-import CustomButton from "./src/components/CustomButton/CustomButton";
+import jair from "../../../assets/images/jair.jpg";
+import CustomButton from "../../components/CustomButton/CustomButton";
 
 const IntroPage = () => {
   return (
@@ -89,10 +86,13 @@ const styles = StyleSheet.create({
    textAlign: "center",
   },
   buttonContainer: {
-   backgroundColor: "coral",
    position: "absolute",
    bottom: 20,
    width: "100%",
+   flexDirection: "row",
+   justifyContent: "space-around",
+   alignItems: "center",
+   paddingVertical: 15,
   },
 
 });
