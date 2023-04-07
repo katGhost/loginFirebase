@@ -21,7 +21,8 @@ const IntroPage = () => {
   }
 
   const onSignUpPress = () => {
-    console.warn('Go to SignUp')
+    console.warn('Go to SignUp');
+    navigation.navigate('Sign Up');
   }
 
   return (
