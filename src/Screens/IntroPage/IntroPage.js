@@ -4,12 +4,26 @@ import {
   Text,
   SafeAreaView,
   Image,
-  StyleSheet,
 } from "react-native";
 import jair from "../../../assets/images/jair.jpg";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+
 
 const IntroPage = () => {
+
+  const navigation = useNavigation();
+
+  const onSignInPress = () => {
+    console.warn('Signed In');
+    navigation.navigate('Sign In');
+  }
+
+  const onSignUpPress = () => {
+    console.warn('Go to SignUp')
+  }
+
   return (
     <SafeAreaView style={styles.root}>
       {/* An image as leading and an absolute positioned container with a text */}
@@ -29,72 +43,13 @@ const IntroPage = () => {
 
       {/* Container with two horizontally aligned buttons */}
       <View style={styles.buttonContainer}>
-         <CustomButton type="PRIMARY" text={"sign in"}/>
-         <CustomButton type="SECONDARY" text={"sign up"}/>
+         <CustomButton type="PRIMARY" text={"sign in"} onPress={onSignInPress} />
+         <CustomButton type="SECONDARY" text={"sign up"} onPress={onSignUpPress} />
       </View>
 
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: "#F1F5F9",
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 10,
-  },
-  image: {
-    width: "100%",
-    height: 360,
-    marginBottom: 20,
-    borderRadius: 15,
-    marginTop: 35,
-    marginBottom: 40,
-  },
-  titleContainer: {
-   position: "absolute",
-   top: 70,
-   left: "20%",
-   textAlign: "center",
-   width: 250
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "#FFFFFF",
-    textAlign: "center",
-    letterSpacing: 0.9,
-    textTransform: "capitalize",
-  },
-  textContainer: {
-    alignItems: "center",
-  },
-  text: {
-   fontSize: 25,
-   fontWeight: "bold",
-   color: "#000000",
-   letterSpacing: 0.9,
-   marginBottom: 10,
-   textTransform: "capitalize",
-  },
-  subtext: {
-   fontSize: 16,
-   fontWeight: "400",
-   color: "#6B7280",
-   marginHorizontal: 20,
-   textAlign: "center",
-  },
-  buttonContainer: {
-   position: "absolute",
-   bottom: 20,
-   width: "100%",
-   flexDirection: "row",
-   justifyContent: "space-around",
-   alignItems: "center",
-   paddingVertical: 15,
-  },
-
-});
 
 export default IntroPage;

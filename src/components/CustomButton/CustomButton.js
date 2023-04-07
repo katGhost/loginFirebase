@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Pressable, StyleSheet } from "react-native";
 
 const CustomButton = ({ onPress, text, type = "PRIMARY" }) => {
-  const background = type === "PRIMARY" ? "#FFFFFF" : "#2563EB";
+  const background = type === "PRIMARY" ? "#FFFFFF" : "#4338CA";
   // make text distinguishable for each button
   const color = type === "PRIMARY" ? "#000000" : "#FFFFFF";
 
