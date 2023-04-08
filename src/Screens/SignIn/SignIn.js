@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, Pressable, Image } from "react-native";
 import jakayla from "../../../assets/images/jakayla.jpg";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 //firebase
 import { firebaseConfig } from "../../back-end/firebaseConfig";
@@ -10,6 +11,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,8 +23,10 @@ const SignIn = () => {
   // handle your sign in firebase account
   const handleSignInAccount = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((userCredential) => {
         console.log("Signed into Account with Firebase!");
+        // if (firebaseAuthentication) { goto home} else {error}
+        navigation.navigate("Home")
         // add firestore to access user credentials
         const user = userCredential.user;
         console.log(user);

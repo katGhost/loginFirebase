@@ -16,12 +16,10 @@ const IntroPage = () => {
   const navigation = useNavigation();
 
   const onSignInPress = () => {
-    console.warn('Signed In');
     navigation.navigate('Sign In');
   }
 
   const onSignUpPress = () => {
-    console.warn('Go to SignUp');
     navigation.navigate('Sign Up');
   }
 

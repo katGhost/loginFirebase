@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Pressable,
   StyleSheet,
+  Alert
 } from "react-native";
 import black from "../../../assets/images/black.jpg";
 import CustomInput from "../../components/CustomInput/CustomInput";
@@ -34,13 +35,14 @@ const SignUp = () => {
 
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, email, password, passwordRepeat)
-      .then(() => {
+      .then((userCredential) => {
         console.log("Account created");
         const user = userCredential.user;
         console.log(user);
       })
       .catch((error) => {
         console.log(error);
+        Alert.alert(error.message);
       });
   };
 
