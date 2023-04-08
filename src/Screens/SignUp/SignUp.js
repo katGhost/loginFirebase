@@ -1,18 +1,48 @@
-import React from "react";
-import { View, Text, Image, SafeAreaView, Pressable, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  Pressable,
+  StyleSheet,
+} from "react-native";
 import black from "../../../assets/images/black.jpg";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import { useNavigation } from "@react-navigation/native";
+import { firebaseConfig } from "../../back-end/firebaseConfig";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword
+} from "firebase/auth";
 
 const SignUp = () => {
   const navigation = useNavigation();
 
-  const onSignUpPress = () => {
-    console.warn('Signed for an account')
-  }
   const backToIntro = () => {
-    navigation.navigate('Introduction');
-  }
+    navigation.navigate("Introduction");
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+
+  // call methods below in sign in and sign up
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const handleCreateAccount = () => {
+    createUserWithEmailAndPassword(auth, email, password, passwordRepeat)
+      .then(() => {
+        console.log("Account created");
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -27,23 +57,27 @@ const SignUp = () => {
 
       {/* input container with three inputs */}
       <View style={styles.inputContainer}>
-        <CustomInput placeholder={"Enter your email"} />
+        <CustomInput placeholder={"Enter your email"} onChangeText={(email) => setEmail(email)} />
         <CustomInput
           placeholder={"Create your password"}
+          onChangeText={(password) => setPassword(password)}
           secureTextEntry={true}
         />
         <CustomInput
           placeholder={"Confirm your password"}
+          onChangeText={(password) => setPasswordRepeat(passwordRepeat)}
           secureTextEntry={true}
         />
       </View>
 
       {/* bottom button container */}
       <View style={styles.buttonContainer}>
-        <Pressable onPress={onSignUpPress} style={styles.button}>
-          <Text style={styles.text}>sign in</Text>
+        <Pressable onPress={handleCreateAccount} style={styles.button}>
+          <Text style={styles.text}>sign up</Text>
         </Pressable>
-        <Pressable onPress={backToIntro}><Text style={styles.btnText}>back to sign in</Text></Pressable>
+        <Pressable onPress={backToIntro}>
+          <Text style={styles.btnText}>back to welcome</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -127,7 +161,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     textTransform: "capitalize",
     letterSpacing: 0.7,
-  }
+  },
 });
 
 export default SignUp;

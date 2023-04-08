@@ -1,19 +1,34 @@
-import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Pressable,
-  Image,
-} from "react-native";
-import mpumelelo from "../../../assets/images/mpumelelo.jpg";
+import React, { useState } from "react";
+import { View, Text, SafeAreaView, Pressable, Image } from "react-native";
 import jakayla from "../../../assets/images/jakayla.jpg";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import styles from "./styles";
 
+//firebase
+import { firebaseConfig } from "../../back-end/firebaseConfig";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 const SignIn = () => {
-  const onSignPress = () => {
-    console.warn("awaiting firebase...");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // call methods below in sign in and sign up
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // handle your sign in firebase account
+  const handleSignInAccount = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        console.log("Signed into Account with Firebase!");
+        // add firestore to access user credentials
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -29,10 +44,17 @@ const SignIn = () => {
 
       {/* Text Input */}
       <View style={styles.inputContainer}>
-        <CustomInput placeholder={"Enter your email"} value={'email'} />
+        <CustomInput
+          placeholder={"Enter your email"}
+          onChangeText={(email) => {
+            setEmail(email);
+          }}
+        />
         <CustomInput
           placeholder={"Enter your password"}
-          value={"password"}
+          onChangeText={(password) => {
+            setPassword(password);
+          }}
           secureTextEntry={true}
         />
       </View>
@@ -49,7 +71,7 @@ const SignIn = () => {
 
       {/* BOttom view with button and account sign up link */}
       <View style={styles.buttonContainer}>
-        <Pressable onPress={onSignPress} style={styles.button}>
+        <Pressable onPress={handleSignInAccount} style={styles.button}>
           <Text style={styles.btnText}>sign in</Text>
         </Pressable>
 
