@@ -7,6 +7,7 @@ import {
   Image,
 } from "react-native";
 import mpumelelo from "../../../assets/images/mpumelelo.jpg";
+import jakayla from "../../../assets/images/jakayla.jpg";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import styles from "./styles";
 
@@ -18,7 +19,7 @@ const SignIn = () => {
   return (
     <SafeAreaView style={styles.root}>
       {/* An image as leading and an absolute positioned container with a text */}
-      <Image source={mpumelelo} style={styles.image} />
+      <Image source={jakayla} style={styles.image} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Enjoy your day in music</Text>
       </View>
@@ -28,9 +29,10 @@ const SignIn = () => {
 
       {/* Text Input */}
       <View style={styles.inputContainer}>
-        <CustomInput placeholder={"Enter your email"} />
+        <CustomInput placeholder={"Enter your email"} value={'email'} />
         <CustomInput
           placeholder={"Enter your password"}
+          value={"password"}
           secureTextEntry={true}
         />
       </View>

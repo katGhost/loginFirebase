@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 360,
+    height: 320,
     marginBottom: 20,
     borderRadius: 15,
     marginTop: 35,
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: "bold",
-    color: "#26A69A",
+    fontWeight: "900",
+    color: "#3D5AFE",
     textAlign: "center",
     letterSpacing: 0.9,
     textTransform: "capitalize",
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: "100%",
     position: "absolute",
-    bottom: 20,
+    bottom: 10,
     width: "100%",
     alignItems: "center",
     paddingVertical: 15,

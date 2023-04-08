@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
    },
    image: {
      width: "100%",
-     height: 360,
+     height: 400,
      marginBottom: 20,
      borderRadius: 15,
      marginTop: 35,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
    },
    title: {
      fontSize: 25,
-     fontWeight: "bold",
+     fontWeight: "900",
      color: "#FFFFFF",
      textAlign: "center",
      letterSpacing: 0.9,
